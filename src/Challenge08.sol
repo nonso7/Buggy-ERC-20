@@ -82,6 +82,7 @@ contract Challenge08 {
         return true;
     }
 
+    // Bug: Does not reduce total supply of tokens or send the tokens removed from msg.sender to zero address
     function burn(uint256 value) public {
         _balances[msg.sender] -= value;
         emit Transfer(msg.sender, address(0), value);
