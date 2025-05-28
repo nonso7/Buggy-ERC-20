@@ -36,6 +36,7 @@ contract Challenge03 {
         _mint(msg.sender, 1000000 * 10 ** 18);
     }
 
+    //Anyone can call the burn function
     function burn(address account, uint256 value) public {
         require(account != address(0), "Invalid burner");
         uint256 accountBalance = _balances[account];
@@ -51,6 +52,7 @@ contract Challenge03 {
         return true;
     }
 
+    
     function approve(address spender, uint256 amount) public returns (bool) {
         _approve(msg.sender, spender, amount);
         return true;
