@@ -84,6 +84,7 @@ contract Challlenge01 {
         uint256 fromBalance = _balances[from];
         if (fromBalance < value) revert InsufficientBalance(from, fromBalance, value);
 
+        // Bug: Sender Balance not reduced, allowing him to reuse his balance (double spend)
         _balances[to] += value;
         emit Transfer(from, to, value);
     }
