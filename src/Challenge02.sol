@@ -39,6 +39,7 @@ contract Challenge02 {
         decimals = _decimals;
     }
 
+    //Doesnt implement ERC20 Approve standard
     function approve(address owner, address spender, uint256 amount) public {
         allowance[owner][spender] = amount;
         emit Approval(owner, spender, amount);
