@@ -83,6 +83,7 @@ contract Challenge04 {
         return true;
     }
 
+    //function does not check if the contract is paused before executing the transfer
     function transferFrom(address from, address to, uint256 value) public returns (bool) {
         _spendAllowance(from, msg.sender, value);
         _transfer(from, to, value);
@@ -115,6 +116,8 @@ contract Challenge04 {
             _allowances[tokenOwner][spender] = currentAllowance - value;
         }
     }
+
+    
 
     function _mint(address account, uint256 value) internal {
         require(account != address(0), "Challenge4: mint to zero address");
