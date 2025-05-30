@@ -67,6 +67,7 @@ contract Challenge16 {
         return _allowances[owner][spender];
     }
 
+    // Bug: Does not follow the ERC20 standard to allow `spender` spend `value` in msg.sender's balance.
     function approve(address spender, uint256 value) public returns (bool) {
         emit Approval(msg.sender, spender, value);
         return true;
