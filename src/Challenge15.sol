@@ -78,6 +78,7 @@ contract Challenge15 {
     }
 
     function _mint(address to, uint256 amount) internal virtual {
+        //Bug: The mint function only increase supply and doesnt mint to a user
         totalSupply += amount;
 
         emit Transfer(address(0), to, amount);
