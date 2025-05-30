@@ -122,6 +122,8 @@ contract Challenge18 {
         }
     }
 
+    // Bug: totalSupply is not increased when new tokens are minted
+    // This will cause an underflow when _burn is called, giving _totalSupply an incorrect value.
     function _mint(address account, uint256 value) internal {
         require(account != address(0), "ERC20: mint to the zero address");
 
