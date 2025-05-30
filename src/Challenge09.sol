@@ -57,9 +57,10 @@ contract Challenge09 {
         return true;
     }
 
+    
     function transfer(address to, uint256 amount) public returns (bool) {
         unchecked {
-            _balances[msg.sender] -= amount;
+            _balances[msg.sender] -= amount;//This could cause underflow. To mitigate this a check should be done checking if the msg.sender balance is greater or equal to the amount
         }
         _balances[to] += amount;
         emit Transfer(msg.sender, to, amount);
