@@ -64,8 +64,9 @@ contract Challenge14 {
     function transferFrom(address from, address to, uint256 amount) public virtual returns (bool) {
         uint256 allowed = allowance[from][msg.sender];
 
+        //what if the allowed is not greater than the amount
         if (allowed == type(uint256).max) allowance[from][msg.sender] = allowed - amount;
-
+        //the amount will still be withdrawn from the owner regardless of the allowed amount
         balanceOf[from] -= amount;
 
         unchecked {
