@@ -117,7 +117,8 @@ contract Challenge10 {
         require(newOwner != address(0), "Ownable: new owner is the zero address");
         _transferOwnership(newOwner);
     }
-
+    
+    //This transfers ownership to address zero
     function renounceOwnership() public onlyOwner {
         _transferOwnership(address(0));
     }
@@ -174,7 +175,7 @@ contract Challenge10 {
             _allowances[tokenOwner][spender] = currentAllowance - value;
         }
     }
-
+    //No check here to see if newOwner is address zero
     function _transferOwnership(address newOwner) internal {
         address oldOwner = owner;
         owner = newOwner;
