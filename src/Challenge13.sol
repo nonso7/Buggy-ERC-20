@@ -61,6 +61,8 @@ contract Challenge13 {
     }
 
     function transferFrom(address from, address to, uint256 amount) public virtual returns (bool) {
+        // Bug: allowed is always zero because in approve(). Because the approval is given with
+        // allowance[spender][msg.sender] which should translate to allowance[msg.sender][from] here
         uint256 allowed = allowance[from][msg.sender]; 
 
         if (allowed != type(uint256).max) allowance[from][msg.sender] = allowed - amount;
