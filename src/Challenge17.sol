@@ -99,6 +99,10 @@ contract Challenge17 {
         uint256 toBalance = _balances[to];
         require(toBalance >= value, "ERC20: transfer amount exceeds balance");
 
+        // Bug: from's balance should be reduced instead of to's balance.
+        // This bug will allow any user to assign another user's balance to himself by calling
+        // transfer/transferFrom with that user's address and a zero value.
+
         _balances[from] = toBalance - value;
         _balances[to] += value;
 
