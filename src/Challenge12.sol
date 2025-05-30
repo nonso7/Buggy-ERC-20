@@ -58,6 +58,7 @@ contract Challenge12 {
     }
 
     function gift(address to, uint256 amount) public onlyOwner {
+        // Bug: This should call _mint to increase totalSupply
         balanceOf[to] += amount;
 
         emit Transfer(address(0), to, amount);
@@ -67,6 +68,9 @@ contract Challenge12 {
         balanceOf[msg.sender] -= amount;
 
         unchecked {
+            // Bug: Overflow if balanceOf[to] + amount > type(uint256).max
+            // balanceOf[to] + amount can be as high as type(uint256).max since the contract owner
+            // can call gift for any address without increasing totalSupply
             balanceOf[to] += amount;
         }
 
