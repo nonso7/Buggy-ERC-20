@@ -72,10 +72,13 @@ contract Challenge11 {
         return true;
     }
 
+    //violating the "checks-effects-interactions" pattern and risking inconsistent state.
     function transferFrom(address from, address to, uint256 value) public returns (bool) {
         _transfer(from, to, value);
         uint256 currentAllowance = _allowances[from][msg.sender];
+        
         require(currentAllowance >= value, "Insufficient allowance");
+        //the msg.sender is meant to spend from the owner
         _allowances[msg.sender][from] = currentAllowance - value;
         return true;
     }
